@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: lms_db
+    restart: always
+    environment:
+      - POSTGRES_USER=lms_user
+      - POSTGRES_PASSWORD=lms_password
+      - POSTGRES_DB=lms_db
+    ports:
+      - "5432:5432"  # Maps localhost:5432 to container:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:  # This ensures data survives even if you delete the container
